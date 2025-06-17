@@ -1,0 +1,673 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    --brand-dark: #0d0d0d;
+    --brand-dark-secondary: #1a1a1a;
+    --brand-gold: #c9a46a;
+    --brand-gold-light: #e6c89c;
+    --brand-off-white: #e8e8e8;
+    --font-primary: 'Poppins', sans-serif;
+    
+    /* Lifeline Palette */
+    --ll-moonstone: #469BA7;
+    --ll-midnight-green: #005765;
+    --ll-gunmetal: #012731;
+    --ll-ghost-white: #F1F3F9;
+    --ll-peach: #F1B393;
+}
+
+/* ==============================================
+--- 1. Base & Global Styles ---
+==============================================
+*/
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--brand-dark);
+    color: var(--brand-off-white);
+    line-height: 1.6;
+    margin: 0;
+    transition: background-color 0.5s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    margin-top: 0;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gold {
+    color: var(--brand-gold);
+}
+
+.section-bg {
+    background-color: var(--brand-dark-secondary);
+    padding: 6rem 0;
+}
+
+.page-header {
+    padding: 6rem 0 4rem;
+    background-color: var(--brand-dark-secondary);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+}
+
+.page-header p {
+    font-size: 1.25rem;
+    color: rgba(232, 232, 232, 0.7);
+    max-width: 700px;
+    margin: 1rem auto 0 auto;
+}
+
+/* ==============================================
+--- 2. Preloader & Animations ---
+==============================================
+*/
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--brand-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.75s ease, visibility 0.75s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-logo {
+    width: 10rem;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==============================================
+--- 3. Header & Navigation ---
+==============================================
+*/
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201, 164, 106, 0.1);
+    padding: 0.75rem 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 56px; 
+    height: 56px; 
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(12deg);
+}
+
+.main-nav {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .main-nav {
+        display: flex;
+        gap: 2rem;
+        font-weight: 500;
+    }
+    .main-nav a {
+        color: var(--brand-off-white);
+    }
+    .main-nav a:hover {
+        color: var(--brand-gold-light);
+    }
+     .main-nav a.active {
+        color: var(--brand-gold);
+        font-weight: 700;
+    }
+}
+
+.mobile-nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+}
+@media (min-width: 768px) {
+    .mobile-nav-toggle {
+        display: none;
+    }
+}
+.mobile-nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+/* ==============================================
+--- 4. Main Site Sections ---
+==============================================
+*/
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px; 
+}
+
+.hero-logo {
+    width: 15rem; 
+    height: 15rem; 
+    margin: 0 auto 1.5rem auto;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(232, 232, 232, 0.7);
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: rgba(232, 232, 232, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.initiatives-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .initiatives-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background-color: var(--brand-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 {
+    color: var(--brand-gold);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    color: rgba(232, 232, 232, 0.8);
+}
+
+.partners-section {
+    padding: 6rem 0;
+}
+
+.partners-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+@media (min-width: 992px) {
+    .partners-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.partner-card {
+    background-color: var(--brand-dark-secondary);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.partner-logo-wrapper {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.partner-card img {
+    max-height: 70px; 
+    max-width: 140px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.partner-name {
+    font-size: 1.25rem;
+    color: var(--brand-off-white);
+    margin-bottom: 0.5rem;
+}
+
+.partner-description {
+    font-size: 0.9rem;
+    color: rgba(232, 232, 232, 0.7);
+    line-height: 1.5;
+}
+
+.team-section {
+    padding: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background-color: var(--brand-dark-secondary);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+.team-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--brand-dark);
+    margin: 0 auto 1.5rem auto;
+    border: 2px solid var(--brand-gold);
+}
+
+.team-card h3 {
+    font-size: 1.5rem;
+    color: var(--brand-gold);
+    margin-bottom: 0.25rem;
+}
+
+.team-card .role {
+    font-size: 1rem;
+    color: rgba(232, 232, 232, 0.7);
+}
+
+.card, .partner-card, .team-card {
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover, .partner-card:hover, .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+    border-color: rgba(201, 164, 106, 0.3);
+}
+
+.contact-section {
+    padding: 6rem 0;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+}
+.contact-section p {
+    font-size: 1.1rem;
+    color: rgba(232, 232, 232, 0.7);
+    max-width: 600px;
+    margin: 1rem auto 2rem auto;
+}
+
+/* ==============================================
+--- 5. Lifeline Page Specific Styles ---
+==============================================
+*/
+.lifeline-page {
+    background-color: var(--ll-ghost-white);
+    color: var(--ll-gunmetal);
+}
+.lifeline-page .main-header {
+    background-color: rgba(241, 243, 249, 0.8);
+    border-bottom-color: rgba(0, 87, 101, 0.1);
+}
+.lifeline-page .main-nav a {
+    color: var(--ll-midnight-green);
+}
+.lifeline-page .main-nav a:hover {
+    color: var(--ll-moonstone);
+}
+.lifeline-page .main-nav a.active {
+    color: var(--ll-moonstone);
+    font-weight: 700;
+}
+.lifeline-hero {
+    padding: 6rem 0;
+}
+.lifeline-hero .container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+.lifeline-hero .hero-content {
+    flex: 1;
+}
+.lifeline-hero .hero-image {
+    flex: 1;
+    display: none;
+}
+@media (min-width: 992px) {
+    .lifeline-hero .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.image-placeholder { 
+    width: 350px;
+    height: 350px;
+    background: #e6eaf1;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--ll-moonstone);
+    border: 2px dashed var(--ll-moonstone);
+}
+.image-placeholder span {
+    margin-top: 1rem;
+    font-weight: 500;
+}
+.lifeline-hero-logo {
+    width: 100px;
+    margin-bottom: 1.5rem;
+}
+.lifeline-page .lifeline-hero h1, 
+.lifeline-page .page-header h1 {
+    color: var(--ll-gunmetal);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+.lifeline-page .lifeline-hero p,
+.lifeline-page .page-header p {
+    font-size: 1.1rem;
+    color: var(--ll-gunmetal);
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+}
+.lifeline-how-it-works {
+    padding: 6rem 0;
+}
+.lifeline-how-it-works h2 {
+    color: var(--ll-gunmetal);
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+}
+.steps-grid {
+    display: grid;
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.step-card {
+    padding: 2rem;
+}
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--ll-peach);
+    color: var(--ll-gunmetal);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto 1.5rem auto;
+}
+.step-card h3 {
+    color: var(--ll-gunmetal);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.step-card p {
+    color: var(--ll-gunmetal);
+}
+.section-bg-lifeline {
+    background-color: #e6eaf1;
+    padding: 6rem 0;
+}
+.features-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.feature-card {
+    background-color: var(--ll-ghost-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.feature-card h4 {
+    color: var(--ll-moonstone);
+    font-size: 1.25rem;
+}
+.lifeline-cta {
+    padding: 6rem 0;
+    background: var(--ll-midnight-green);
+}
+.lifeline-cta h2 {
+    font-size: 2.5rem;
+    color: white;
+}
+.lifeline-cta p {
+    color: rgba(255,255,255,0.8);
+    margin: 1rem auto 2rem;
+    max-width: 500px;
+}
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.btn-lifeline-primary {
+    background-color: var(--ll-moonstone);
+    color: white;
+}
+.btn-lifeline-primary:hover {
+    background-color: var(--ll-midnight-green);
+    transform: scale(1.05);
+}
+.btn-lifeline-secondary {
+    background-color: transparent;
+    color: var(--ll-moonstone);
+    border: 2px solid var(--ll-moonstone);
+}
+.btn-lifeline-secondary:hover {
+    background-color: var(--ll-moonstone);
+    color: white;
+}
+
+/* ==============================================
+--- 6. Timeline Page ---
+==============================================
+*/
+.timeline-section {
+    padding: 4rem 0 6rem;
+}
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: rgba(201, 164, 106, 0.1);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+.timeline-item {
+    padding: 1rem 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -14px;
+    background-color: var(--brand-dark);
+    border: 4px solid var(--brand-gold);
+    top: 32px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+.timeline-item:hover::after {
+    transform: scale(1.2);
+}
+.timeline-item:nth-child(even)::after {
+    left: -14px;
+}
+.timeline-content {
+    padding: 2rem;
+    background-color: var(--brand-dark-secondary);
+    border: 1px solid rgba(201, 164, 106, 0.1);
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+.timeline-item:hover .timeline-content {
+    transform: translateY(-5px);
+}
+.timeline-phase {
+    display: inline-block;
+    background-color: var(--brand-gold);
+    color: var(--brand-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.timeline-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ==============================================
+--- 7. Footer ---
+==============================================
+*/
+.main-footer {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(201, 164, 106, 0.1);
+    color: rgba(232, 232, 232, 0.6);
+}
+.footer-link {
+    color: rgba(232, 232, 232, 0.4);
+    font-size: 0.9rem;
+}
+.lifeline-page .main-footer {
+    background-color: #e6eaf1;
+    border-top-color: rgba(0, 87, 101, 0.1);
+    color: var(--ll-gunmetal);
+}
+.lifeline-page .footer-link {
+    color: var(--ll-midnight-green);
+}
