@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Our Doctors - Happy Pills</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="HP logo FINALE.png" type="image/png">
+</head>
+<body>
+
+    <div class="page-transition-overlay"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-link page-transition-link">
+                <img src="HP logo FINALE.png" alt="Happy Pills Logo" class="logo">
+            </a>
+            <nav class="main-nav">
+                <a href="lifeline.html" class="nav-lifeline-link page-transition-link">Lifeline</a>
+                <a href="doctors.html" class="active page-transition-link">Our Doctors</a>
+                <a href="timeline.html" class="page-transition-link">Timeline</a>
+                <a href="about.html" class="page-transition-link">About Us</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header text-center">
+            <div class="container">
+                <h1>Meet the Lifeline Medical Team</h1>
+                <p class="hero-subtitle">The dedicated and experienced professionals bringing healthcare to your doorstep. Our doctors are committed to providing compassionate and expert care.</p>
+            </div>
+        </section>
+
+        <section class="doctors-section">
+            <div class="container">
+                <div class="doctors-grid">
+                    <!-- Doctor 1 -->
+                    <div class="doctor-card scroll-animate" data-doctor="ahsan">
+                        <div class="doctor-photo-placeholder"></div>
+                        <h3>Dr. Mohamed Ahsan</h3>
+                        <p class="role">General Practitioner</p>
+                    </div>
+                    <!-- Doctor 2 -->
+                    <div class="doctor-card scroll-animate" data-doctor="zaaib">
+                        <div class="doctor-photo-placeholder"></div>
+                        <h3>Dr. Zaaib Ibrahim</h3>
+                        <p class="role">General Practitioner</p>
+                    </div>
+                    <!-- Doctor 3 -->
+                    <div class="doctor-card scroll-animate" data-doctor="yazdhaan">
+                        <div class="doctor-photo-placeholder"></div>
+                        <h3>Dr. Yoosuf Yazdhaan</h3>
+                        <p class="role">General Practitioner</p>
+                    </div>
+                    <!-- Add more doctor cards here as they join -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="doctor-modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="doctor-modal-close-btn">&times;</button>
+            <div id="modal-body">
+                <!-- Doctor detail content will be injected here by JS -->
+                <div class="doctor-detail" id="ahsan">
+                    <div class="doctor-photo-placeholder-modal"></div>
+                    <h2>Dr. Mohamed Ahsan</h2>
+                    <p class="bio">A dedicated medical officer from Hulhumale Hospital with a special interest in Pediatrics. Dr. Ahsan is an experienced and licensed APLS provider with a background in pediatric and NICU care.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>MBBS - Philippines</li>
+                        <li>Licensed APLS Provider</li>
+                    </ul>
+                </div>
+                <div class="doctor-detail" id="zaaib">
+                    <div class="doctor-photo-placeholder-modal"></div>
+                    <h2>Dr. Zaaib Ibrahim</h2>
+                    <p class="bio">An experienced medical officer from Hulhumale Hospital, Dr. Ibrahim focuses on Surgery and critical care. He is a licensed ACLS provider and previously served as an ICU Medical Officer at ADK Hospital.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>MBBS - Philippines</li>
+                        <li>Licensed ACLS Provider</li>
+                    </ul>
+                </div>
+                <div class="doctor-detail" id="yazdhaan">
+                    <div class="doctor-photo-placeholder-modal"></div>
+                    <h2>Dr. Yoosuf Yazdhaan</h2>
+                     <p class="bio">Currently serving at Hulhumale Hospital, Dr. Yazdhaan has a keen interest in Trauma and Surgery. As a licensed ACLS provider, he brings valuable experience in emergency room and trauma care.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>MBBS - Lithuania</li>
+                        <li>Licensed ACLS Provider</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container text-center">
+            <p>&copy; 2025 Happy Pills. All Rights Reserved.</p>
+            <p class="footer-link">happy-pill.com</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

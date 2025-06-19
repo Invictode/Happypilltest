@@ -91,7 +91,7 @@ img {
 }
 
 /* ==============================================
---- 2. Preloader & Animations ---
+--- 2. Preloader & Page Transitions ---
 ==============================================
 */
 .preloader {
@@ -123,6 +123,23 @@ img {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.05); opacity: 0.7; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--brand-dark); /* Default transition color */
+    transform: translateY(100%);
+    z-index: 9998;
+    transition: transform 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.page-transition-overlay.is-active {
+    transform: translateY(0);
 }
 
 .scroll-animate {
@@ -175,9 +192,11 @@ img {
         display: flex;
         gap: 2rem;
         font-weight: 500;
+        align-items: center;
     }
     .main-nav a {
         color: var(--brand-off-white);
+        padding: 0.5rem;
     }
     .main-nav a:hover {
         color: var(--brand-gold-light);
@@ -185,6 +204,17 @@ img {
      .main-nav a.active {
         color: var(--brand-gold);
         font-weight: 700;
+    }
+    /* Special style for the Lifeline link */
+    .main-nav a.nav-lifeline-link {
+        color: var(--brand-gold);
+        background-color: rgba(201, 164, 106, 0.1);
+        border-radius: 6px;
+        border: 1px solid rgba(201, 164, 106, 0.2);
+    }
+    .main-nav a.nav-lifeline-link:hover {
+        background-color: rgba(201, 164, 106, 0.2);
+        color: var(--brand-gold-light);
     }
 }
 
@@ -337,7 +367,7 @@ img {
 }
 
 .team-section {
-    padding: 4rem 0;
+    padding: 4rem 0 6rem;
 }
 
 .team-grid {
@@ -351,6 +381,9 @@ img {
     border-radius: 8px;
     padding: 2rem;
     text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
 }
 .team-photo-placeholder {
     width: 120px;
@@ -372,7 +405,7 @@ img {
     color: rgba(232, 232, 232, 0.7);
 }
 
-.card, .partner-card, .team-card {
+.card, .partner-card, .team-card:not([data-member]) { /* Prevent hover on non-clickable cards */
     border: 1px solid rgba(255,255,255,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -410,6 +443,8 @@ img {
 }
 .lifeline-page .main-nav a {
     color: var(--ll-midnight-green);
+    background-color: transparent; /* Override main site nav style */
+    border: none;
 }
 .lifeline-page .main-nav a:hover {
     color: var(--ll-moonstone);
@@ -418,20 +453,29 @@ img {
     color: var(--ll-moonstone);
     font-weight: 700;
 }
+/* Special style for Lifeline link on its own page */
+.lifeline-page .main-nav a.nav-lifeline-link.active {
+    background-color: rgba(70, 155, 167, 0.15);
+    border-radius: 6px;
+}
+
 .lifeline-hero {
     padding: 6rem 0;
 }
 .lifeline-hero .container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 3rem;
 }
 .lifeline-hero .hero-content {
     flex: 1;
+    min-width: 300px;
 }
 .lifeline-hero .hero-image {
     flex: 1;
     display: none;
+    min-width: 300px;
 }
 @media (min-width: 992px) {
     .lifeline-hero .hero-image {
@@ -460,27 +504,56 @@ img {
     width: 100px;
     margin-bottom: 1.5rem;
 }
-.lifeline-page .lifeline-hero h1, 
-.lifeline-page .page-header h1 {
+/* VISUAL OVERHAUL: Ensure text is visible */
+.lifeline-page h1, .lifeline-page h2, .lifeline-page h3, .lifeline-page h4 {
     color: var(--ll-gunmetal);
+}
+.lifeline-page p, .lifeline-page span, .lifeline-page li {
+    color: var(--ll-midnight-green);
+}
+.lifeline-page .section-header p {
+     color: var(--ll-midnight-green);
+}
+
+.lifeline-hero h1 {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
 }
-.lifeline-page .lifeline-hero p,
-.lifeline-page .page-header p {
+.lifeline-hero p {
     font-size: 1.1rem;
-    color: var(--ll-gunmetal);
     max-width: 500px;
     margin-bottom: 2.5rem;
 }
-.lifeline-how-it-works {
+
+/* Consultation types section */
+.lifeline-consultations {
     padding: 6rem 0;
 }
-.lifeline-how-it-works h2 {
-    color: var(--ll-gunmetal);
-    font-size: 2.5rem;
-    margin-bottom: 4rem;
+.consultation-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+@media(min-width: 768px) {
+    .consultation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.consultation-card {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 87, 101, 0.08);
+    border: 1px solid #e6eaf1;
+}
+.consultation-card h3 {
+    color: var(--ll-moonstone);
+    margin-bottom: 1rem;
+}
+
+.lifeline-how-it-works {
+    padding: 6rem 0;
 }
 .steps-grid {
     display: grid;
@@ -509,48 +582,24 @@ img {
     margin: 0 auto 1.5rem auto;
 }
 .step-card h3 {
-    color: var(--ll-gunmetal);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
-.step-card p {
-    color: var(--ll-gunmetal);
-}
+
 .section-bg-lifeline {
-    background-color: #e6eaf1;
-    padding: 6rem 0;
-}
-.features-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-.feature-card {
-    background-color: var(--ll-ghost-white);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-.feature-card h4 {
-    color: var(--ll-moonstone);
-    font-size: 1.25rem;
+    background-color: #eaf1f3;
 }
 .lifeline-cta {
     padding: 6rem 0;
     background: var(--ll-midnight-green);
 }
-.lifeline-cta h2 {
-    font-size: 2.5rem;
+.lifeline-cta h2, .lifeline-cta p {
     color: white;
-}
-.lifeline-cta p {
-    color: rgba(255,255,255,0.8);
-    margin: 1rem auto 2rem;
-    max-width: 500px;
 }
 .cta-buttons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 .btn-lifeline-primary {
@@ -558,7 +607,7 @@ img {
     color: white;
 }
 .btn-lifeline-primary:hover {
-    background-color: var(--ll-midnight-green);
+    background-color: #3a8a97;
     transform: scale(1.05);
 }
 .btn-lifeline-secondary {
@@ -572,7 +621,69 @@ img {
 }
 
 /* ==============================================
---- 6. Timeline Page ---
+--- 6. Lifeline FAQ Section ---
+==============================================
+*/
+.lifeline-faq {
+    padding: 6rem 0;
+    background-color: var(--ll-ghost-white); /* Ensures consistent light background */
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(0, 87, 101, 0.15);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--ll-gunmetal);
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-primary);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    color: var(--ll-peach);
+}
+
+.faq-question.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.faq-answer p {
+    padding: 0 1rem 1.5rem 0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+.faq-answer p strong {
+    font-weight: 600;
+    color: var(--ll-gunmetal);
+}
+
+
+/* ==============================================
+--- 7. Timeline Page ---
 ==============================================
 */
 .timeline-section {
@@ -651,7 +762,7 @@ img {
 }
 
 /* ==============================================
---- 7. Footer ---
+--- 8. Footer ---
 ==============================================
 */
 .main-footer {
@@ -670,4 +781,216 @@ img {
 }
 .lifeline-page .footer-link {
     color: var(--ll-midnight-green);
+}
+
+/* ==============================================
+--- 9. Buttons ---
+==============================================
+*/
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--brand-gold);
+    color: var(--brand-dark);
+}
+.btn-primary:hover {
+    background-color: var(--brand-gold-light);
+    transform: scale(1.05);
+    color: var(--brand-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--brand-gold);
+    border: 1px solid rgba(201, 164, 106, 0.5);
+}
+.btn-secondary:hover {
+    background-color: var(--brand-gold);
+    color: var(--brand-dark);
+}
+
+.btn-disabled {
+    display: inline-block;
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    background-color: rgba(232, 232, 232, 0.1);
+    color: rgba(232, 232, 232, 0.5);
+    cursor: not-allowed;
+    border: 1px solid rgba(232, 232, 232, 0.1);
+}
+
+/* ==============================================
+--- 10. Doctors & Team Page Modals ---
+==============================================
+*/
+.doctors-section {
+    padding: 4rem 0 6rem;
+}
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.doctor-card {
+    background-color: var(--brand-dark-secondary);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+    border-color: rgba(201, 164, 106, 0.3);
+}
+
+.doctor-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--brand-dark);
+    margin: 0 auto 1.5rem auto;
+    border: 2px solid var(--brand-gold);
+}
+
+.doctor-card h3 {
+    font-size: 1.5rem;
+    color: var(--brand-gold);
+    margin-bottom: 0.25rem;
+}
+
+.doctor-card .role {
+    font-size: 1rem;
+    color: rgba(232, 232, 232, 0.7);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+}
+
+.modal-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--brand-dark-secondary);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+@media(min-width: 768px) {
+    .modal-content {
+        padding: 3rem;
+    }
+}
+
+
+.modal-overlay.is-visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--brand-off-white);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.doctor-detail, .member-detail {
+    display: none; /* Hidden by default */
+}
+
+.doctor-detail.is-active, .member-detail.is-active {
+    display: block; /* Shown by JS */
+}
+
+.doctor-photo-placeholder-modal, .member-photo-placeholder-modal {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--brand-dark);
+    margin: 0 auto 1.5rem auto;
+    border: 3px solid var(--brand-gold);
+}
+
+.doctor-detail h2, .member-detail h2 {
+    text-align: center;
+    color: var(--brand-gold);
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.member-detail .role {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(232, 232, 232, 0.7);
+    margin-bottom: 1.5rem;
+}
+
+.doctor-detail .bio, .member-detail .bio {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: rgba(232, 232, 232, 0.8);
+}
+
+.doctor-detail h4, .member-detail h4 {
+    font-size: 1.2rem;
+    color: var(--brand-gold-light);
+    border-bottom: 1px solid rgba(201, 164, 106, 0.2);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.doctor-detail ul, .member-detail ul {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor-detail ul li, .member-detail ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }

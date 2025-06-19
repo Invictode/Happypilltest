@@ -8,16 +8,18 @@
     <link rel="icon" href="HP logo FINALE.png" type="image/png">
 </head>
 <body>
+    <div class="page-transition-overlay"></div>
 
     <header class="main-header">
         <div class="container">
-            <a href="index.html" class="logo-link">
+            <a href="index.html" class="logo-link page-transition-link">
                 <img src="HP logo FINALE.png" alt="Happy Pills Logo" class="logo">
             </a>
             <nav class="main-nav">
-                <a href="lifeline.html">Lifeline</a>
-                <a href="timeline.html">Timeline</a>
-                <a href="about.html" class="active">About Us</a>
+                <a href="lifeline.html" class="nav-lifeline-link page-transition-link">Lifeline</a>
+                <a href="doctors.html" class="page-transition-link">Our Doctors</a>
+                <a href="timeline.html" class="page-transition-link">Timeline</a>
+                <a href="about.html" class="active page-transition-link">About Us</a>
                 <a href="index.html#contact">Contact</a>
             </nav>
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -31,35 +33,40 @@
     <main>
         <section class="page-header text-center">
             <div class="container">
-                <h1>Meet the Team</h1>
-                <p class="hero-subtitle">We are a team of doctors, developers, and visionaries dedicated to revolutionizing healthcare in the Maldives.</p>
+                <h1>The Visionaries Behind Happy Pills</h1>
+                <p class="hero-subtitle">Meet the founding team of doctors, developers, and strategists dedicated to revolutionizing healthcare in the Maldives.</p>
             </div>
         </section>
 
         <section class="team-section">
             <div class="container">
                 <div class="team-grid">
-                    <div class="team-card scroll-animate">
+                    <!-- Team Member 1 -->
+                    <div class="team-card scroll-animate" data-member="adil">
                         <div class="team-photo-placeholder"></div>
                         <h3>Ismail Adil</h3>
                         <p class="role">Founder</p>
                     </div>
-                    <div class="team-card scroll-animate">
+                    <!-- Team Member 2 -->
+                    <div class="team-card scroll-animate" data-member="fizan">
                         <div class="team-photo-placeholder"></div>
                         <h3>Fizan Ali</h3>
                         <p class="role">Co-Founder</p>
                     </div>
-                    <div class="team-card scroll-animate">
+                    <!-- Team Member 3 -->
+                    <div class="team-card scroll-animate" data-member="hisham">
                         <div class="team-photo-placeholder"></div>
                         <h3>Hisham Ali Zaki</h3>
                         <p class="role">Co-Founder</p>
                     </div>
-                    <div class="team-card scroll-animate">
+                    <!-- Team Member 4 -->
+                    <div class="team-card scroll-animate" data-member="shamikh">
                         <div class="team-photo-placeholder"></div>
                         <h3>Mohamed Shamikh Ibrahim</h3>
                         <p class="role">COO</p>
                     </div>
-                    <div class="team-card scroll-animate">
+                    <!-- Team Member 5 -->
+                    <div class="team-card scroll-animate" data-member="shahuzan">
                         <div class="team-photo-placeholder"></div>
                         <h3>Hussain Shahuzan Mohamed</h3>
                         <p class="role">CMO</p>
@@ -68,6 +75,81 @@
             </div>
         </section>
     </main>
+
+    <!-- Modal Structure for Team Members -->
+    <div class="modal-overlay" id="team-modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="team-modal-close-btn">&times;</button>
+            <div id="modal-body">
+                <!-- Ismail Adil -->
+                <div class="member-detail" id="adil">
+                    <div class="member-photo-placeholder-modal"></div>
+                    <h2>Ismail Adil</h2>
+                    <p class="role">Founder</p>
+                    <p class="bio">With 15 years in public health and a Master's degree in the field, Ismail is the foundational visionary for Happy Pills, driving the mission to enhance healthcare access across the nation.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>MBBS, Masters in Public Health</li>
+                        <li>15+ Years in Public Health & Education</li>
+                        <li>Licensed Emergency Care Provider</li>
+                    </ul>
+                </div>
+                <!-- Fizan Ali -->
+                <div class="member-detail" id="fizan">
+                    <div class="member-photo-placeholder-modal"></div>
+                    <h2>Fizan Ali</h2>
+                    <p class="role">Co-Founder</p>
+                    <p class="bio">As a Medical Officer In-Charge at Hulhumale Hospital and a published author in medical journals, Dr. Fizan combines clinical leadership with a passion for research and development.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>Medical Officer In-Charge, Hulhumale Hospital</li>
+                        <li>6+ Years in Public Health</li>
+                        <li>Published Medical Author</li>
+                        <li>MBBS</li>
+                    </ul>
+                </div>
+                <!-- Hisham Ali Zaki -->
+                <div class="member-detail" id="hisham">
+                     <div class="member-photo-placeholder-modal"></div>
+                    <h2>Hisham Ali Zaki</h2>
+                    <p class="role">Co-Founder</p>
+                    <p class="bio">A licensed AFC Elite Sports Doctor for the Maldives National Football Team, Dr. Hisham leads our sports medicine initiatives, blending emergency care expertise with specialized athletic healthcare.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>AFC Elite Sports Doctor (Maziya SC & National Team)</li>
+                        <li>Licensed Emergency Care Provider & Trainer</li>
+                        <li>Special focus on Sports Medicine</li>
+                    </ul>
+                </div>
+                <!-- Mohamed Shamikh Ibrahim -->
+                <div class="member-detail" id="shamikh">
+                    <div class="member-photo-placeholder-modal"></div>
+                    <h2>Mohamed Shamikh Ibrahim</h2>
+                    <p class="role">Chief Operating Officer</p>
+                    <p class="bio">With over a decade of experience in operations supervision and event management at MACL, Shamikh is the architect of our logistical and operational excellence.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>7+ Years as Operations Supervisor at MACL</li>
+                        <li>10+ Years in Event Planning & Management</li>
+                    </ul>
+                </div>
+                <!-- Hussain Shahuzan Mohamed -->
+                <div class="member-detail" id="shahuzan">
+                    <div class="member-photo-placeholder-modal"></div>
+                    <h2>Hussain Shahuzan Mohamed</h2>
+                    <p class="role">Chief Marketing Officer</p>
+                    <p class="bio">Combining 5+ years as an Emergency Medical Officer with high-level experience as an aerial videographer, Shahuzan brings a unique blend of clinical insight and creative storytelling to our brand.</p>
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>5+ Years as Emergency Medical Officer</li>
+                        <li>Medical Officer In-Charge, Hulhumale Hospital</li>
+                        <li>Experienced Aerial Videographer & Colorist</li>
+                        <li>Licensed Emergency Care Provider</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="container text-center">
